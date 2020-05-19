@@ -41,7 +41,10 @@ namespace Graph_lib {
 		Mouse_event(const nana::arg_mouse& ea);
 	};
 
+	using Keyboard_event = nana::arg_keyboard;
 	using Size_event = nana::arg_resized;
+	using nana::event_code;
+
 	class Shape;
 
 	class Drawing : nana::drawing {
@@ -53,8 +56,10 @@ namespace Graph_lib {
 		void put_on_top(Shape& p);	// put p on top of other shapes
 		void redraw();
 
-		using Mouse_cb = std::function<void(const Mouse_event& e)>;
-		using Size_cb  = std::function<void(const Size_event&  e)>;
+		using Keyboard_cb = std::function<void(const Keyboard_event& e)>;
+		using Mouse_cb    = std::function<void(const Mouse_event& e)>;
+		using Size_cb     = std::function<void(const Size_event&  e)>;
+		void set_keyboard_callback(Keyboard_cb cb);
 		void set_mouse_callback(Mouse_cb cb);
 		void set_size_callback(Size_cb cb);
 

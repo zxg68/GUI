@@ -55,6 +55,13 @@ namespace Graph_lib {
 			type = drag;
 	}
 
+	void Drawing::set_keyboard_callback(Keyboard_cb cb)
+	{
+		auto keyboard_handler = [cb](const nana::arg_keyboard& ea) { cb(ea); };
+		own.events().key_press(keyboard_handler);
+		own.events().key_release(keyboard_handler);
+	}
+
 	void Drawing::set_mouse_callback(Mouse_cb cb)
 	{
 		auto mouse_handler = [cb](const nana::arg_mouse& ea) { cb({ea}); };

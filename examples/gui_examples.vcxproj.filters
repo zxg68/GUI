@@ -108,6 +108,9 @@
     <ClCompile Include="chapter.16.5-mouse.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="test_keyboard.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUI_v3\GUI.h">

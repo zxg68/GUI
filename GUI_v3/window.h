@@ -36,8 +36,9 @@ public:
 	void attach(Shape& s)     { dw.attach(s); }
 	void detach(Shape& s)     { dw.detach(s); }
 	void put_on_top(Shape& s) { dw.put_on_top(s); }
-	void set_mouse_callback(Drawing::Mouse_cb cb) { dw.set_mouse_callback(cb); }
-	void set_size_callback (Drawing::Size_cb cb)  { dw.set_size_callback(cb);  }
+	void set_keyboard_callback(Drawing::Keyboard_cb cb) { dw.set_keyboard_callback(cb); }
+	void set_mouse_callback(Drawing::Mouse_cb cb)       { dw.set_mouse_callback(cb);    }
+	void set_size_callback (Drawing::Size_cb cb)        { dw.set_size_callback(cb);     }
 
 	void redraw();
      
