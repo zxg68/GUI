@@ -90,23 +90,6 @@ void Polygon::draw_lines(Graphics& g) const
 		Closed_polyline::draw_lines(g);
 }
 
-void Open_polyline::draw_lines(Graphics& g) const
-{
-/*		if (fill_color().visibility()) {
-			fl_color(fill_color().as_int());
-			fl_begin_complex_polygon();
-			for(int i=0; i<number_of_points(); ++i){
-				fl_vertex(point(i).x, point(i).y);
-			}
-			fl_end_complex_polygon();
-			fl_color(color().as_int());	// reset color
-		}
-*/		
-		if (color().visibility())
-			Shape::draw_lines(g);
-}
-
-
 void Closed_polyline::draw_lines(Graphics& g) const
 {
 	Open_polyline::draw_lines(g);

@@ -49,7 +49,7 @@ namespace Graph_lib {
 		if (type == wheel) {
 			auto wea = static_cast<const nana::arg_wheel&>(ea);
 			which = Wheels(wea.which);
-			distance = wea.upwards ? wea.distance : -wea.distance;
+			distance = wea.upwards ? wea.distance : -int(wea.distance);
 		}
 		else if (type == move && (state & s_buttons))
 			type = drag;

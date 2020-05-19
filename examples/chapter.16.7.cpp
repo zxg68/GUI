@@ -8,7 +8,6 @@
 #include <sstream>
 #include "Graph.h"         // get access to our graphics library facilities
 #include "GUI.h"
-#include "Window.h"
 
 using namespace Graph_lib;
 using namespace std;

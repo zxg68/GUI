@@ -16,10 +16,15 @@ namespace Graph_lib {
 	struct Mouse_event {
 		enum Event_type { dbl_click, push, drag, release, move, wheel };
 		enum Buttons {					// values for button
-			any = nana::mouse::any_button, left = nana::mouse::left_button,
-			middle = nana::mouse::middle_button, right = nana::mouse::right_button
+			any =    int(nana::mouse::any_button),
+			left = int(nana::mouse::left_button),
+			middle = int(nana::mouse::middle_button),
+			right = int(nana::mouse::right_button)
 		};
-		enum Wheels { vertical = nana::arg_wheel::wheel::vertical, horizontal = nana::arg_wheel::wheel::horizontal };
+		enum Wheels {
+			vertical   = int(nana::arg_wheel::wheel::vertical),
+			horizontal = int(nana::arg_wheel::wheel::horizontal)
+		};
 		enum States {					// masks for state
 			s_left = 0x01, s_middle = 0x02, s_right = 0x04, s_buttons = 0x07,
 			s_alt  = 0x10, s_shift  = 0x20, s_ctrl  = 0x40

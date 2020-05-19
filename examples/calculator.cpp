@@ -1,7 +1,7 @@
 
 #include "GUI.h"
-#include "window.h"
 #include <vector>
+#include <string>
 #include <ctype.h>
 
 using namespace Graph_lib;
@@ -128,7 +128,7 @@ CalcWin::~CalcWin() {
 }
 
 Button& CalcWin::create_button(char key) {
-	auto lbl = key == 'n' ? u8"\261" : string(1, key);
+	auto lbl = key != 'n' ? string(1, key) : (char*)u8"\261";
 	auto& kb = *new Button{lbl, [key, this] { key_pressed(key); }};
 	buttons.push_back(&kb);
 	attach(kb);

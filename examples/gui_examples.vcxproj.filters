@@ -110,9 +110,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\GUI_v3\graph.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="..\GUI_v3\GUI.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -125,10 +122,13 @@
     <ClInclude Include="..\GUI_v3\Simple_window.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\GUI_v3\window.h">
+    <ClInclude Include="..\GUI_v3\Drawing.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\GUI_v3\Drawing.h">
+    <ClInclude Include="..\GUI_v3\Graph.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUI_v3\Window.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

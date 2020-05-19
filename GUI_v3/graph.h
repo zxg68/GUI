@@ -185,10 +185,10 @@ private:
 };
 
 struct Open_polyline : Shape {	// open sequence of lines
-	using Shape::Shape;
+	Open_polyline() {}
+	Open_polyline(std::initializer_list<Point> lst) : Shape{lst} {}
 	using Shape::add;
 	using Shape::set_point;
-	void draw_lines(Graphics& g) const;
 };
 
 struct Closed_polyline : Open_polyline {	// closed sequence of lines

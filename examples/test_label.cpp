@@ -1,4 +1,3 @@
-#include "window.h"
 #include "GUI.h"
 
 using namespace Graph_lib;

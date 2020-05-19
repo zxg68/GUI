@@ -4,7 +4,6 @@
 #include <cstdio>
 #include <omp.h>
 #include "GUI.h"
-#include "window.h"
 
 using namespace Graph_lib;
 using namespace std;
