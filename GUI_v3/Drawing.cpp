@@ -60,6 +60,8 @@ namespace Graph_lib {
 		auto keyboard_handler = [cb](const nana::arg_keyboard& ea) { cb(ea); };
 		own.events().key_press(keyboard_handler);
 		own.events().key_release(keyboard_handler);
+		auto keep_focus = [this](const nana::arg_focus& ea) { if (!ea.getting) own.focus(); };
+		own.events().focus(keep_focus);
 	}
 
 	void Drawing::set_mouse_callback(Mouse_cb cb)

@@ -11,11 +11,13 @@ int main()
 	win.div("vert<a margin=20 gap=20><b margin=20>");
 	Out_box type = {"Type"}, key = {"Key"};
 	Label alt = {"Alt"}, ctrl = {"Ctrl"}, shift = {"Shift"};
+	Button btn = { "", [](Button& b) { b.set_label(b.label() + "!"); } };
 	win.place("a", type);
 	win.place("a", key);
 	win.place("b", alt);
 	win.place("b", ctrl);
 	win.place("b", shift);
+	win.place("b", btn);
 	win.collocate();
 	win.set_keyboard_callback([&](const Keyboard_event& evt) {
 		switch (evt.evt_code) {
