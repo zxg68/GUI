@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <initializer_list>
+#include <algorithm>			// max
 #include <stdexcept>
 #include <cmath>
 
@@ -113,6 +114,8 @@ public:
 
 typedef double Fct(double);
 
+inline Size max(Size a, Size b) { return { std::max(a.width, b.width), std::max(a.height, b.height) }; }
+
 class Shape  {	// deals with color and style, and holds sequence of lines
 protected:
 	Shape() { }
@@ -126,6 +129,8 @@ protected:
 	virtual void draw_lines(Graphics& g) const;	// simply draw the appropriate lines
 public:
 	virtual void move(int dx, int dy);	// move the shape +=dx and +=dy
+
+	virtual Size dimmension() const;
 
 	void set_color(Color col) { lcolor = col; }
 	Color color() const { return lcolor; }
@@ -176,6 +181,7 @@ struct Rectangle : Shape {
 		add(x);
 	}
 	void draw_lines(Graphics& g) const;
+	Size dimmension() const { return Shape::dimmension() + Size(w, h); }
 
 	int height() const { return h; }
 	int width() const { return w; }
@@ -215,6 +221,7 @@ struct Text : Shape {
 	Text(Point x, const string& s) : lab{s} { add(x); }
 
 	void draw_lines(Graphics& g) const;
+	Size dimmension() const;
 
 	void set_label(const string& s) { lab = s; }
 	string label() const { return lab; }
@@ -235,6 +242,7 @@ struct Axis : Shape {
 
 	void draw_lines(Graphics& g) const;
 	void move(int dx, int dy);
+	Size dimmension() const;
 
 	void set_color(Color c);
 
@@ -289,6 +297,7 @@ struct Marked_polyline : Open_polyline {
 		: Open_polyline{lst}, mark{m}
 	{ if (m.empty()) mark = "*"; }
 	void draw_lines(Graphics& g) const;
+	Size dimmension() const { return Shape::dimmension() + Size{ 12, 12 }; }
 private:
 	string mark;
 };
@@ -319,6 +328,7 @@ struct Image : Shape {
 	void open(const string& file) { img.open(file); }
 	void open(const void *data, std::size_t bytes) { img.open(data, bytes); }
 
+	Size dimmension() const { return Shape::dimmension() + img.size(); }
 	void draw_lines(Graphics& g) const;
 	void set_mask(Point xy, int ww, int hh) { w=ww; h=hh; cx=xy.x; cy=xy.y; }
 //	void move(int dx,int dy) { Shape::move(dx,dy); p->draw(point(0).x,point(0).y); }

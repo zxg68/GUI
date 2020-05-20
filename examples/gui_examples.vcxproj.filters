@@ -111,6 +111,9 @@
     <ClCompile Include="test_keyboard.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="test_animation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUI_v3\GUI.h">

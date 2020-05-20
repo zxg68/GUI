@@ -140,3 +140,56 @@ void Canvas::set_size_callback(Drawing::Size_cb cb)
 {
 	reference_to<canvas_>(pw).dw.set_size_callback(cb);
 }
+
+//------------------------------------------------------------------------------
+
+struct amimation_ : nana::panel<true> {
+	nana::animation ani;
+	amimation_(nana::widget& own, const nana::rectangle& r, const Animation& self)
+		: panel<true>{own, r}, ani{self.fps()}
+	{
+		ani.looped(self.is_looped());
+		ani.output(*this, {0,0});
+	}
+};
+
+nana::widget* Animation::create_nana_widget(nana::widget& own)
+{
+	return pw = new amimation_{own, area, *this};
+}
+
+void Animation::play()
+{
+	reference_to<amimation_>(pw).ani.play();
+}
+void Animation::pause()
+{
+	reference_to<amimation_>(pw).ani.pause();
+}
+
+void Animation::push_back(const std::vector<string>& img_files)
+{
+	nana::frameset fset;
+	for (const auto& img : img_files)
+		fset.push_back(nana::paint::image{img});
+	reference_to<amimation_>(pw).ani.push_back(fset);
+}
+
+void Animation::push_back(const std::vector<const Shape*>& shapes)
+{
+	Size dim;
+	for (const auto sp : shapes)
+		dim = max(dim, sp->dimmension());
+	nana::frameset fset;
+	auto bgcolor = nana::API::bgcolor(reference_to<amimation_>(pw));
+	fset.push_back([shapes, bgcolor, dim](std::size_t pos, Graphics& fg, Size& fg_dim) {
+						if (pos >= shapes.size()) return false;
+						fg_dim = dim;
+						fg.make(dim);
+						fg.rectangle(true, bgcolor);
+						shapes[pos]->draw(fg);
+						return true;
+					},
+		shapes.size());
+	reference_to<amimation_>(pw).ani.push_back(fset);
+}

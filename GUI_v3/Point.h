@@ -7,6 +7,7 @@
 namespace Graph_lib {
 
 	using Point = nana::point;
+	using Size  = nana::size;
 
 }
 #endif

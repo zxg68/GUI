@@ -42,6 +42,7 @@ namespace Graph_lib {
 //		void move(int dx, int dy) { pw->move(pw->pos() + Point{dx, dy}); }
 		void hide() { pw->hide(); }
 		void show() { pw->show(); }
+		virtual void set_label(const string& s) { pw->caption(lbl = s); }
 		virtual void set_fgcolor(Color cc) { pw->fgcolor(cc); }
 		virtual void set_bgcolor(Color cc) { pw->bgcolor(cc); }
 		virtual void set_font(Font fnt)  { pw->typeface(fnt); }
@@ -148,6 +149,7 @@ namespace Graph_lib {
 	};
 
 	//------------------------------------------------------------------------------
+
 	class Canvas : public Widget {
 	public:
 		Canvas(Point xy, int w, int h) : Widget{xy, w, h, ""} { }
@@ -164,6 +166,33 @@ namespace Graph_lib {
 
 	private:
 		nana::widget* create_nana_widget(nana::widget& own) override;
+	};
+
+//------------------------------------------------------------------------------
+
+	class Animation : public Widget {
+	public:
+		Animation(Point xy, int w, int h, bool looped = false, int fps = 23)
+			: Widget{ xy, w, h, "" }, looped_(looped), fps_(fps) { }
+		Animation(bool looped = false, int fps = 23)
+			: Widget{ "" }, looped_(looped), fps_(fps) { }
+
+		bool is_looped() const { return looped_; }
+		int  fps() const { return fps_; }
+
+		// put frame pictures at the end
+		void push_back(const std::vector<string>& img_files);
+		// put frame shapes at the end
+		void push_back(const std::vector<const Shape*>& shapes);
+
+		void play();
+		void pause();
+
+	private:
+		nana::widget* create_nana_widget(nana::widget& own) override;
+
+		bool looped_;
+		int  fps_;
 	};
 
 //------------------------------------------------------------------------------

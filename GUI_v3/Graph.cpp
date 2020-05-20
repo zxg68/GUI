@@ -13,6 +13,16 @@ void Shape::draw_lines(Graphics& g) const
 			g.line(points[i-1], points[i]);
 }
 
+Size Shape::dimmension() const
+{
+	int maxx = 0, maxy = 0;
+	for (auto p : points) {
+		if (p.x > maxx) maxx = p.x;
+		if (p.y > maxy) maxy = p.y;
+	}
+	return Size(maxx + 1, maxy + 1);
+}
+
 void Shape::draw(Graphics& g) const
 {
 	auto oldc = g.palette(false);
@@ -121,6 +131,13 @@ void Text::draw_lines(Graphics& g) const
 	g.typeface(ofnt);
 }
 
+Size Text::dimmension() const
+{
+	auto ss = Shape::dimmension();
+	auto fs = fnt.size();
+	return ss + Size(fs * lab.length(), fs * 2);
+}
+
 Function::Function(Fct f, double r1, double r2, Point xy, int count, double xscale, double yscale)
 // graph f(x) for x in [r1:r2) using count line segments with (0,0) displayed at xy
 // x coordinates are scaled by xscale and y coordinates scaled by yscale
@@ -204,6 +221,14 @@ void Axis::draw_lines(Graphics& g) const
 	Shape::draw_lines(g);	// the line
 	notches.draw(g);	// the notches may have a different color from the line
 	label.draw(g);	// the label may have a different color from the line
+}
+
+Size Axis::dimmension() const
+{
+	auto ss = Shape::dimmension();
+	auto ns = notches.dimmension();
+	auto ls = label.dimmension();
+	return max(max(ss, ns), ls);
 }
 
 
