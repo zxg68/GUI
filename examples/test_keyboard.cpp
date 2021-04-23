@@ -7,11 +7,11 @@ using namespace std;
 
 int main()
 {
-	Window win = { 400, 120, "Test Keyboard Event" };
+	auto win = Window{ 400, 120, "Test Keyboard Event" };
+	auto type = Out_box{"Type"}, key = Out_box{"Key"};
+	auto alt = Label{"Alt"}, ctrl = Label{"Ctrl"}, shift = Label{"Shift"};
+	auto btn = Button{ "", [](Button& b) { b.set_label(b.label() + "!"); } };
 	win.div("vert<a margin=20 gap=20><b margin=20>");
-	Out_box type = {"Type"}, key = {"Key"};
-	Label alt = {"Alt"}, ctrl = {"Ctrl"}, shift = {"Shift"};
-	Button btn = { "", [](Button& b) { b.set_label(b.label() + "!"); } };
 	win.place("a", type);
 	win.place("a", key);
 	win.place("b", alt);

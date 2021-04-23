@@ -42,4 +42,4 @@ void Window::place(const char* fld, Widget & w)
 
 void gui_main(Window& win) { win.redraw(); nana::exec(); }
 
-} // Graph
+} // namespace Graph_lib

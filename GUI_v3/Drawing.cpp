@@ -80,4 +80,4 @@ namespace Graph_lib {
 		own.events().resized(size_handler);
 	}
 
-}
+} // namespace Graph_lib

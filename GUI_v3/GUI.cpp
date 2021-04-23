@@ -53,7 +53,7 @@ nana::widget* In_box::create_nana_widget(nana::widget& own)
 int In_box::get_int()
 {
 	auto& pi = reference_to<IO_box>(pw).txt_;
-	std::string s;
+	string s;
 	if (!pi.getline(0, s) || !isdigit(s[0])) return -999999;
 	return std::stoi(s);
 }
@@ -86,7 +86,7 @@ void Out_box::put(const string& s)
 
 nana::widget* Menu::create_nana_widget(nana::widget& own) {  // attach all buttons
 	static const string sk[] = { "horizontal", "vertical" };
-	string div = "<margin=[0,5] " + sk[k] + " buttons>";
+	auto div = "<margin=[0,5] " + sk[k] + " buttons>";
 	auto pnl = new nana::panel<false>{own, area};
 	pnl->caption(label());
 	nana::place plc{*pnl};

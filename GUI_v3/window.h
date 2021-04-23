@@ -55,5 +55,5 @@ inline nana::rectangle screen_area() { return nana::screen{}.get_primary().worka
 inline int x_max() { return screen_area().width; }	// width of screen in pixels
 inline int y_max() { return screen_area().height; }	// height of screen in pixels
 
-}
+} // namespace Graph_lib
 #endif

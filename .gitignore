@@ -1,3 +1,4 @@
 examples/.vs
 examples/x64
+tmp
 *.doc*
